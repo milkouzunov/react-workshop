@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-
+import Details from './components/Details';
 
 import Footer from './components/Footer';
 
@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/" component={Home}/>
           <Route exact path="/dashboard" component={Dashboard}/>
           <Route path="/categories/:category" component={Dashboard}/>
-
+          <Route path="/pets/details/:petId" component={Details}/>
 
         </Switch>
       </main>

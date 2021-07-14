@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import {Link} from 'react-router-dom';
 
 export default function DashboardItem({pet}) {
   return (
@@ -10,14 +11,14 @@ export default function DashboardItem({pet}) {
       </p>
       <p className="description">{pet.description}</p>
       <div className="pet-info">
-        <a href="#">
+        <Link to="#">
           <button className="button">
             <i className="fas fa-heart"></i> Pet
           </button>
-        </a>
-        <a href="#">
+        </Link>
+        <Link to={`/pets/details/${pet.id}`}>
           <button className="button">Details</button>
-        </a>
+        </Link>
         <i className="fas fa-heart"></i> <span> {pet.likes}</span>
       </div>
     </li>

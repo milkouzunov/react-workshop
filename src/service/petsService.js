@@ -27,6 +27,16 @@ async function getAll (category) {
     }
 }
 
+async function getOne (id) {
+    try {
+        const res = await fetch(`http://localhost:5000/pets/${id}`);
+        return res.json();
+    } catch(err) {
+        console.error(err);
+    }
+}
+
 export {
-    getAll
+    getAll,
+    getOne
 };

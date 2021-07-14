@@ -15,7 +15,7 @@ export default function Dashboard({match}) {
         petsService.getAll(match.params.category)
           .then(pets => setPets(pets))
           .catch(err => console.error(err));
-  }); 
+  }, [match]); 
 
   return (
     <section className="dashboard">
