@@ -9,14 +9,9 @@ export default function Header() {
       <nav className="navbar">
         <section className="navbar-dashboard">
           <div className="first-bar">
-          <Link to="/dashboard"><a href="#">Dashboard</a></Link>
-            
-            <a className="button" href="#">
-              My Pets
-            </a>
-            <a className="button" href="#">
-              Add Pet
-            </a>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="#" className="button">My Pets</Link>
+            <Link to="/pets/create" className="button">Add Pet</Link>
           </div>
           <div className="second-bar">
             <ul>

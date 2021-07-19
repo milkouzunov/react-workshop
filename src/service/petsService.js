@@ -36,7 +36,39 @@ async function getOne (id) {
     }
 }
 
+async function create (name, description, imageURL, category) {
+    let body = JSON.stringify({name, description, imageURL, category, likes: 0});
+    try {
+        return fetch('http://localhost:5000/pets',
+        {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body
+        });
+        
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+async function update (pet) {
+    let body = JSON.stringify(pet);
+    try {
+        return fetch(`http://localhost:5000/pets/${pet.id}`,
+        {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body
+        });
+        
+    } catch(err) {
+        console.error(err);
+    }
+}
+
 export {
     getAll,
-    getOne
+    getOne,
+    create,
+    update
 };

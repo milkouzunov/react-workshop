@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { Link } from 'react-router-dom';
+
 import * as petsService from "../../service/petsService";
 
 export default function Details({ match }) {
@@ -27,6 +29,11 @@ export default function Details({ match }) {
         <img src={pet.imageURL} alt="petImg" />
       </p>
       <p className="description">{pet.description}</p>
+      <div className="pet-info">
+            <Link to={`/pets/edit/${pet.id}`}><button className="button">Edit</button></Link>
+            <Link to="#"><button className="button">Delete</button></Link>
+            <i className="fas fa-heart"></i> <span>{pet.likes}</span>
+          </div>
       <style jsx>
         {`
           .detailsOtherPet {
