@@ -66,9 +66,19 @@ async function update (pet) {
     }
 }
 
+async function pet (petId, likes) {
+    return fetch(`http://localhost:5000/pets/${petId}`,
+    {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({likes})
+    });
+}
+
 export {
     getAll,
     getOne,
     create,
-    update
+    update,
+    pet
 };

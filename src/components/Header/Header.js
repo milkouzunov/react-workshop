@@ -1,42 +1,51 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useContext, useEffect } from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
+import AuthContext from "../../contexts/AuthContext";
 
 export default function Header() {
+  const { email, isAuthenticated } = useContext(AuthContext);
   return (
     <header id="site-header">
       <nav className="navbar">
-        <section className="navbar-dashboard">
-          <div className="first-bar">
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="#" className="button">My Pets</Link>
-            <Link to="/pets/create" className="button">Add Pet</Link>
-          </div>
-          <div className="second-bar">
+        {isAuthenticated ? (
+          <section className="navbar-dashboard">
+            <div className="first-bar">
+              <Link to="/dashboard">Dashboard</Link>
+              
+              <Link to="/pets/create" className="button">
+                Add Pet
+              </Link>
+            </div>
+            <div className="second-bar">
+              <ul>
+                {email ? <li>Welcome, {email}!</li> : null}
+                <li>
+                  <Link to="/users/logout">
+                    <i className="fas fa-sign-out-alt"></i> Logout
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </section>
+        ) : null}
+        <section className="navbar-anonymous">
+          {isAuthenticated ? null : (
             <ul>
-              <li>Welcome, username!</li>
               <li>
-                <a href="#">
-                  <i className="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <Link to="/users/register">
+                  <i className="fas fa-user-plus"></i> Register
+                </Link>
+              </li>
+              <li>
+                <Link to="/users/login">
+                  <i className="fas fa-sign-in-alt"></i> Login
+                </Link>
               </li>
             </ul>
-          </div>
-        </section>
-        <section className="navbar-anonymous">
-          <ul>
-            <li>
-              <a href="#">
-                <i className="fas fa-user-plus"></i> Register
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fas fa-sign-in-alt"></i> Login
-              </a>
-            </li>
-          </ul>
+          )}
         </section>
       </nav>
 
@@ -144,7 +153,6 @@ export default function Header() {
           }
         `}
       </style>
-
     </header>
   );
 }

@@ -14,16 +14,22 @@ export default function Details({ match }) {
       .catch((err) => console.error(err));
   }, [match]);
 
+  const onPetButtonClickHandler = () => {
+    let incrementedLikes = Number(pet.likes) + 1;
+    petsService.pet(match.params.petId, incrementedLikes)
+    .then(() => {
+      setPet(state => ({...state, likes: Number(state.likes) + 1}));
+     });
+  };
+
   return (
     <section className="detailsOtherPet">
       <h3>{pet.name}</h3>
       <p>
         Pet counter: {pet.likes}
-        <a href="#">
-          <button className="button">
+          <button onClick={onPetButtonClickHandler} className="button">
             <i className="fas fa-heart"></i> Pet
           </button>
-        </a>
       </p>
       <p className="img">
         <img src={pet.imageURL} alt="petImg" />
